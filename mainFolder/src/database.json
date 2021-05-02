@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "organization": "node ninja",
+        "createdAt": "2020-08-12T19:04:55.455Z",
+        "updatedAt": "2020-08-12T19:04:55.455Z",
+        "products": [
+            "developers",
+            "pizza"
+        ],
+        "marketValue": "90%",
+        "address": "sangotedo",
+        "ceo": "cn",
+        "country": "Taiwan",
+        "noOfEmployees": 2,
+        "employees": [
+            "james bond",
+            "jackie chan"
+        ]
+    },
+    {
+        "id": 2,
+        "organization": "node ninja",
+        "createdAt": "2021-05-02T14:35:40.005Z",
+        "products": [
+            "developers",
+            "pizza"
+        ],
+        "marketValue": "90%",
+        "address": "sangotedo",
+        "ceo": "cn",
+        "country": "Canada",
+        "noOfEmployees": 2,
+        "employees": [
+            "james bond",
+            "jackie chan"
+        ],
+        "updatedAt": "2021-05-02T14:35:40.071Z"
+    },
+    {
+        "id": 3,
+        "organization": "Express travels",
+        "createdAt": "2021-05-02T15:16:35.497Z",
+        "products": [
+            "inter-state travel",
+            "intra-state travel"
+        ],
+        "marketValue": "55%",
+        "address": "Enugu",
+        "ceo": "Ofor",
+        "country": "Nigeria",
+        "noOfEmployees": 50,
+        "employees": [
+            "driver 1",
+            "driver 2"
+        ]
+    }
+]
