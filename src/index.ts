@@ -36,9 +36,16 @@ app.get("/api/database", (req, res)=>{
 
 // Get request with id
 app.get("/api/database/:id", (req, res)=>{
+    fs.readFile(databasePath, "utf-8", (err, data)=>{
+        if(err) return res.status(500).send({
+            status : "Error",
+            message : err.message
+        });
+    database = JSON.parse(data);
     const post = database.find((p)=> p.id === parseInt(req.params.id));
     if(!post) return res.status(404).send({message: "ID NOT FOUND"});
     res.send(post);
+})
 })
 
 // Post request
@@ -85,28 +92,14 @@ app.put("/api/database/:id", (req, res)=>{
 
     const post = database.find((p: databaseBody)=> p.id === parseInt(req.params.id));
 
-    if(!post) return res.status(404).send("ID NOT FOUND");
-    if(!req.body.organization || !req.body.products || !req.body.marketValue || !req.body.address ||
-      !req.body.ceo || !req.body.country || !req.body.noOfEmployees || !req.body.employees)
-      {
-        return res.status(400).send({message: "Please Complete All Required Feilds"})
-        }
+    if(!post) return res.status(404).send({message: "ID NOT FOUND"});
     if(post){
-        post.organization = req.body.organization;
-        post.createdAt = req.body.createdAt;
-        post.updatedAt = new Date();
-        post.products = req.body.products;
-        post.marketValue = req.body.marketValue;
-        post.address = req.body.address;
-        post.ceo = req.body.ceo;
-        post.country = req.body.country;
-        post.noOfEmployees = req.body.noOfEmployees;
-        post.employees = req.body.employees;
+        const newData = { ...post, ...req.body, updatedAt: new Date() }
 
         const index: number = database.findIndex((item: databaseBody) => item.id === post.id);
-        database[index] = {...post};
+        database[index] = newData;
         writeToDatabase(databasePath, database);
-        res.status(200).send(post);
+        return res.status(200).send(newData);
     }
 })
 })
