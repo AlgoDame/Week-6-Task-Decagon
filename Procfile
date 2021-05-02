@@ -1,1 +1,1 @@
-web: node mainFolder/dist/server.js
+web: node dist/server.js
