@@ -26,6 +26,7 @@ describe("make a post to database", () => {
         expect(typeof res.body).toBe("object");
         id = res.body.id;
         prefilled = { ...res.body };
+        //console.log(prefilled)
     });
 });
 describe("update a post on database", () => {
@@ -34,6 +35,7 @@ describe("update a post on database", () => {
         const res = await supertest_1.default(index_1.default).put(`/api/database/${id}`).send(newPost);
         expect(res.status).toEqual(200);
         expect(res.body.country).toBe("Canada");
+        //console.log(res.body.id)
         prefilled = { ...res.body };
     });
 });
@@ -53,6 +55,7 @@ describe("Get database content", () => {
 describe("Delete a post by ID", () => {
     it("should delete a post by ID", async () => {
         const res = await supertest_1.default(index_1.default).delete(`/api/database/${id}`);
+        //console.log(res.body.message);
         expect(res.body.message).toEqual(`Post with id number ${id} has been deleted`);
         expect(res.status).toEqual(200);
     });

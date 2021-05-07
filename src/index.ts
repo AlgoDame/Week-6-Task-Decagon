@@ -30,7 +30,7 @@ app.get("/api/database", (req, res)=>{
             message : err.message
         });
         database = JSON.parse(data);
-        res.send(database)
+        return res.status(200).send(database);
     })
 })
 
@@ -44,7 +44,7 @@ app.get("/api/database/:id", (req, res)=>{
     database = JSON.parse(data);
     const post = database.find((p)=> p.id === parseInt(req.params.id));
     if(!post) return res.status(404).send({message: "ID NOT FOUND"});
-    res.send(post);
+    return res.status(200).send(post);
 })
 })
 
@@ -60,7 +60,8 @@ app.post("/api/database", (req, res)=>{
             status : "Error",
             message : err.message
         });
-        const database = JSON.parse(data);
+    
+        database = JSON.parse(data);
         const lastID: number = database[database.length - 1].id;
         const newPost = {
             id : lastID + 1,
@@ -88,7 +89,8 @@ app.put("/api/database/:id", (req, res)=>{
             status : "Error",
             message : err.message
         });
-        const database = JSON.parse(data);
+   
+    database = JSON.parse(data);
 
     const post = database.find((p: databaseBody)=> p.id === parseInt(req.params.id));
 
@@ -111,7 +113,8 @@ app.delete("/api/database/:id", (req, res)=>{
             status : "Error",
             message : err.message
         });
-        const database = JSON.parse(data);
+        
+        database = JSON.parse(data);
 
         const post = database.find((p: databaseBody)=> p.id === parseInt(req.params.id));
         if(!post) return res.status(404).send({message: "ID NOT FOUND"});
